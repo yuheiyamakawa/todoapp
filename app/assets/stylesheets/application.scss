@@ -13,3 +13,21 @@
  *= require_tree .
  *= require_self
  */
+
+
+.container {
+    padding: 16px 16px;
+    width: 100%;
+  }
+
+.text{
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 25px;
+    line-height: 25px;
+    /* identical to box height */
+    
+    
+    color: #000000;   
+}
