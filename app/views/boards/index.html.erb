@@ -1,0 +1,49 @@
+<div class="container">
+<h1 class="title">All Boards</h1>
+
+<% @boards.each do |board| %>
+  <div class="board">
+    <div class="board_content">
+      <div class="board_creater">
+        <%= link_to board.user.email %>
+      </div>
+      <div class="board_title">
+        <%= board.name %>
+      </div>
+      <div class="board_description">
+        <%= board.description %>
+      </div>
+
+      <% if current_user && board.user.id == current_user.id %>
+      <div class="dropbtn">
+      <%= image_tag 'dropdown.png' %>
+      <div class="dropdown-content">
+        <%= link_to 'Edit', edit_board_path(board) %>
+        <%= link_to "Delete", board_path(board), method: :delete %>
+      </div>
+      </div>
+      <% end %>
+     
+
+      </div>
+  </div>
+<% end %>
+
+<div class="rectangle">
+<% if current_user %>
+<%= link_to "＋ Add New Board", new_board_path, class: 'addboards' %>
+<% else %>
+<%= link_to "+ Please Sign in to Add New Board", user_session_path, class: 'addboards' %>
+<% end %>
+</div>
+</div>
+
+<div class="logout">
+<% if current_user %>
+<div class="loginuser">
+<%= current_user.email %>
+</div>
+<br>
+<%= link_to 'Log out', destroy_user_session_path, method: :delete  %>
+<% end %>
+</div>
