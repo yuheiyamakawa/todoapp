@@ -8,6 +8,7 @@ class BoardsController < ActionController::Base
 
     def show
        @board = Board.find(params[:id])
+       @cards = @board.cards
     end
 
     def new

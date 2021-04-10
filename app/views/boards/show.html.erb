@@ -1,0 +1,44 @@
+<div class="container">
+<h1 class="title">Sentences</h1>
+
+
+
+
+<% @cards.each do |card| %>
+
+   <div class="board">
+   
+    <div class="board_content">
+      <div class="board_title">
+        <%= card.name %>
+      </div>
+      <div class="board_description">
+        <%= card.description %>
+      </div>
+    
+
+      <% if current_user && card.board.user.id == current_user.id %>
+        <div class="dropbtn">
+        <%= image_tag 'dropdown.png' %>
+          <div class="dropdown-content">
+            <%= link_to 'Edit', edit_board_card_path(card) %>
+            <%= link_to "Delete", board_card_path(card), method: :delete %>
+          </div>
+        </div>
+      <% end %>
+  
+    </div>
+    </div>
+
+<% end %>
+
+
+<% if current_user && current_user.id == @board.user.id %>
+<div class="rectangle">
+<%= link_to "＋ Add New Sentences", new_board_card_path(@board), class: 'addboards' %>
+</div>
+<% end %>
+
+</div>
+
+
