@@ -1,11 +1,14 @@
 <div class="container">
-<h1 class="title">All Boards</h1>
+<h1 class="title">Words</h1>
+
 
 <% @boards.each do |board| %>
-  <div class="board">
+
+   <div class="board">
+   <%= link_to board_path(board) do %>
     <div class="board_content">
       <div class="board_creater">
-        <%= link_to board.user.email %>
+        <%= board.user.email %>
       </div>
       <div class="board_title">
         <%= board.name %>
@@ -15,28 +18,30 @@
       </div>
 
       <% if current_user && board.user.id == current_user.id %>
-      <div class="dropbtn">
-      <%= image_tag 'dropdown.png' %>
-      <div class="dropdown-content">
-        <%= link_to 'Edit', edit_board_path(board) %>
-        <%= link_to "Delete", board_path(board), method: :delete %>
-      </div>
-      </div>
+        <div class="dropbtn">
+        <%= image_tag 'dropdown.png' %>
+          <div class="dropdown-content">
+            <%= link_to 'Edit', edit_board_path(board) %>
+            <%= link_to "Delete", board_path(board), method: :delete %>
+          </div>
+        </div>
       <% end %>
-     
+  
+    </div>
+    <% end %>
+    </div>
 
-      </div>
-  </div>
 <% end %>
 
 <div class="rectangle">
 <% if current_user %>
-<%= link_to "＋ Add New Board", new_board_path, class: 'addboards' %>
+<%= link_to "＋ Add New Word", new_board_path, class: 'addboards' %>
 <% else %>
-<%= link_to "+ Please Sign in to Add New Board", user_session_path, class: 'addboards' %>
+<%= link_to "+ Please Sign in to Add New Word", user_session_path, class: 'addboards' %>
 <% end %>
 </div>
 </div>
+
 
 <div class="logout">
 <% if current_user %>
@@ -44,6 +49,7 @@
 <%= current_user.email %>
 </div>
 <br>
-<%= link_to 'Log out', destroy_user_session_path, method: :delete  %>
+<%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'logoutbutton'   %>
 <% end %>
 </div>
+
